@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Angka</title>
+  </head>
+  <body>
+    <form action="#" method="POST">
+      <input
+        type="text"
+        name="angka"
+        id="angka"
+        placeholder="Input Angka"
+        onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+      />
+      <br /><br />
+      <button type="button" onclick="Segitiga()">Generate Segitiga</button>
+      <button type="button" onclick="Ganjil()">Generate Bilangan Ganjil</button>
+      <button type="button" onclick="Prima()">Generate Bilangan Prima</button>
+    </form>
+
+    <h2><strong>Result:</strong></h2>
+    <p id="result"></p>
+    <script src="jquery.min.js"></script>
+    <script>
+      function Segitiga() {
+        var angka = document.getElementById("angka").value;
+        $.ajax({
+            url: 'http://localhost:5000/segitiga',
+            type: 'POST',
+            contentType: 'appliacation/json',
+            data: JSON.stringify({ angka: angka }),
+            success: function(data){
+                console.log(data)
+            }
+        });
+      }
+      function Ganjil() {
+        var angka = document.getElementById("angka").value;
+        $.ajax({
+            url: 'http://localhost:5000/ganjil',
+            type: 'POST',
+            contentType: 'appliacation/json',
+            data: JSON.stringify({ angka: angka }),
+            success: function(data){
+                console.log(data)
+            }
+        });
+      }
+      function Prima() {
+        var angka = document.getElementById("angka").value;
+        $.ajax({
+            url: 'http://127.0.0.1:5000/prima',
+            type: 'POST',
+            contentType: 'appliacation/json',
+            data: JSON.stringify({angka: angka}),
+            success: function(data){
+                console.log(data)
+            }
+        });
+      }
+    </script>
+  </body>
+</html>
